@@ -3,24 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Women's Day</title>
-
 <style>
 body{
   margin:0;
   height:100vh;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  background: linear-gradient(135deg,#ff758c,#ff7eb3);
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:Arial;
+  font-family: Arial, sans-serif;
   overflow:hidden;
+  flex-direction: column;
+  text-align:center;
 }
 
 h1{
+  font-size: 40px;
   color:white;
-  font-size:50px;
-  text-align:center;
-  z-index:2;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+button{
+  padding: 10px 20px;
+  font-size: 18px;
+  border:none;
+  border-radius:8px;
+  background:#fff;
+  color:#ff4f91;
+  cursor:pointer;
+  margin-top:10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+button:hover{
+  transform: scale(1.1);
 }
 
 .flower{
@@ -35,28 +52,65 @@ h1{
     transform:translateY(110vh) rotate(360deg);
   }
 }
-</style>
 
+#bouquet{
+  font-size:50px;
+  margin-top:30px;
+  display:none;
+  animation:pop 1s ease forwards;
+}
+
+@keyframes pop{
+  0% { transform: scale(0.2); opacity:0; }
+  50% { transform: scale(1.2); opacity:1; }
+  100% { transform: scale(1); }
+}
+</style>
 </head>
 
 <body>
-
-<h1>🌸 Happy Women's Day 🌸</h1>
+<h1>Hello Babelina 🌸</h1>
+<div id="message"></div>
+<button id="btn1">Say Helloo</button>
+<div id="bouquet">💐🌹🌸💖🌷</div>
 
 <script>
+let step=0;
+const btn=document.getElementById("btn1");
+const message=document.getElementById("message");
+const bouquet=document.getElementById("bouquet");
+
 function createFlower(){
   let f=document.createElement("div");
   f.className="flower";
-  f.innerHTML="🌸";
+  const flowers=["🌸","🌹","💐","🌷"];
+  f.innerHTML=flowers[Math.floor(Math.random()*flowers.length)];
   f.style.left=Math.random()*100+"vw";
   f.style.animationDuration=(3+Math.random()*5)+"s";
   document.body.appendChild(f);
-
   setTimeout(()=>f.remove(),8000);
 }
 
 setInterval(createFlower,300);
-</script>
 
+btn.onclick=function(){
+  if(step===0){
+    message.innerHTML="I’m sorry I wasn’t able to give you flowers… but I still can do something for you. Do you want to see it?";
+    btn.textContent="No";
+    step++;
+  } else if(step===1){
+    message.innerHTML="Come on, pleaseee 😅";
+    step++;
+  } else if(step===2){
+    message.innerHTML="Give me a chance 😘";
+    btn.textContent="Yes";
+    step++;
+  } else if(step===3){
+    message.innerHTML="🌸 Happy Women’s Day my love, I love you 💖";
+    btn.style.display="none";
+    bouquet.style.display="block";
+  }
+}
+</script>
 </body>
 </html>
