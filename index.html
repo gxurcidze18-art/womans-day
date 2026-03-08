@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Women's Day</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
+  overflow:hidden;
+}
+
+h1{
+  color:white;
+  font-size:50px;
+  text-align:center;
+  z-index:2;
+}
+
+.flower{
+  position:absolute;
+  top:-50px;
+  font-size:30px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🌸 Happy Women's Day 🌸</h1>
+
+<script>
+function createFlower(){
+  let f=document.createElement("div");
+  f.className="flower";
+  f.innerHTML="🌸";
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(f);
+
+  setTimeout(()=>f.remove(),8000);
+}
+
+setInterval(createFlower,300);
+</script>
+
+</body>
+</html>
