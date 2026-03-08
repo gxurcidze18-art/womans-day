@@ -18,21 +18,28 @@ body{
 }
 
 h1{
-  font-size: 40px;
-  color:white;
+  font-size: 50px;
+  color:pink;
   margin-bottom: 20px;
-  text-shadow: 0 0 10px rgba(0,0,0,0.3);
+  text-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+#message{
+  font-size:28px;
+  color:pink;
+  margin-bottom:20px;
+  text-shadow:0 0 5px rgba(0,0,0,0.2);
 }
 
 button{
-  padding: 10px 20px;
-  font-size: 18px;
+  padding: 12px 25px;
+  font-size: 20px;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   background:#fff;
   color:#ff4f91;
   cursor:pointer;
-  margin-top:10px;
+  margin:5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   transition: transform 0.2s;
 }
@@ -43,7 +50,7 @@ button:hover{
 .flower{
   position:absolute;
   top:-50px;
-  font-size:30px;
+  font-size:35px;
   animation:fall linear infinite;
 }
 
@@ -54,10 +61,17 @@ button:hover{
 }
 
 #bouquet{
-  font-size:50px;
+  font-size:60px;
   margin-top:30px;
   display:none;
   animation:pop 1s ease forwards;
+}
+
+#gifSurprise{
+  width:200px;
+  margin-top:20px;
+  display:none;
+  animation:float 3s ease-in-out infinite, pop 1s ease forwards;
 }
 
 @keyframes pop{
@@ -65,20 +79,32 @@ button:hover{
   50% { transform: scale(1.2); opacity:1; }
   100% { transform: scale(1); }
 }
+
+@keyframes float{
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
 </style>
 </head>
 
 <body>
-<h1>Hello Babelina 🌸</h1>
-<div id="message"></div>
-<button id="btn1">Say Helloo</button>
+<h1>Hello Babelina 🌸💖</h1>
+<div id="message">Do you want to see your surprise? 😘💐</div>
+<div id="buttons">
+  <button id="yesBtn">Yes 🌸</button>
+  <button id="noBtn">No 😅</button>
+</div>
 <div id="bouquet">💐🌹🌸💖🌷</div>
+<img id="gifSurprise" src="https://media.giphy.com/media/3o6Zt6ML6BklcajjsA/giphy.gif" alt="Cute toy GIF">
 
 <script>
 let step=0;
-const btn=document.getElementById("btn1");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
 const message=document.getElementById("message");
 const bouquet=document.getElementById("bouquet");
+const gif=document.getElementById("gifSurprise");
 
 function createFlower(){
   let f=document.createElement("div");
@@ -93,22 +119,22 @@ function createFlower(){
 
 setInterval(createFlower,300);
 
-btn.onclick=function(){
+yesBtn.onclick=function(){
+  message.innerHTML="🌸🎉 Happy Women’s Day my love! I love you 💖🌹🌷";
+  document.getElementById("buttons").style.display="none";
+  bouquet.style.display="block";
+  gif.style.display="block";
+}
+
+noBtn.onclick=function(){
   if(step===0){
-    message.innerHTML="I’m sorry I wasn’t able to give you flowers… but I still can do something for you. Do you want to see it?";
-    btn.textContent="No";
+    message.innerHTML="😅 Come on, pleaseee! 💖🌸";
     step++;
   } else if(step===1){
-    message.innerHTML="Come on, pleaseee 😅";
+    message.innerHTML="😘 Give me a chance! 🌷💐";
+    yesBtn.textContent="Yes 🌸";
+    noBtn.style.display="none"; // only Yes left
     step++;
-  } else if(step===2){
-    message.innerHTML="Give me a chance 😘";
-    btn.textContent="Yes";
-    step++;
-  } else if(step===3){
-    message.innerHTML="🌸 Happy Women’s Day my love, I love you 💖";
-    btn.style.display="none";
-    bouquet.style.display="block";
   }
 }
 </script>
