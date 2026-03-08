@@ -67,7 +67,7 @@ button:hover{
   animation:pop 1s ease forwards;
 }
 
-#gifSurprise{
+#minionGif{
   width:200px;
   margin-top:20px;
   display:none;
@@ -79,7 +79,6 @@ button:hover{
   50% { transform: scale(1.2); opacity:1; }
   100% { transform: scale(1); }
 }
-
 @keyframes float{
   0% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
@@ -96,41 +95,46 @@ button:hover{
   <button id="noBtn">No 😅</button>
 </div>
 <div id="bouquet">💐🌹🌸💖🌷</div>
-<img id="gifSurprise" src="https://media.giphy.com/media/3o6Zt6ML6BklcajjsA/giphy.gif" alt="Cute toy GIF">
+<img id="minionGif" src="https://media.tenor.com/images/be4179803a428ee7567fb209f1f854e4/tenor.gif" alt="Minion sending kiss">
 
 <script>
-let step=0;
-const yesBtn=document.getElementById("yesBtn");
-const noBtn=document.getElementById("noBtn");
-const message=document.getElementById("message");
-const bouquet=document.getElementById("bouquet");
-const gif=document.getElementById("gifSurprise");
+let step = 0;
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const message = document.getElementById("message");
+const bouquet = document.getElementById("bouquet");
+const minionGif = document.getElementById("minionGif");
 
 function createFlower(){
-  let f=document.createElement("div");
-  f.className="flower";
-  const flowers=["🌸","🌹","💐","🌷"];
-  f.innerHTML=flowers[Math.floor(Math.random()*flowers.length)];
-  f.style.left=Math.random()*100+"vw";
-  f.style.animationDuration=(3+Math.random()*5)+"s";
+  let f = document.createElement("div");
+  f.className = "flower";
+  const flowers = ["🌸","🌹","💐","🌷","💖"];
+  f.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
+  f.style.left = Math.random()*100 + "vw";
+  f.style.animationDuration = (3+Math.random()*5) + "s";
   document.body.appendChild(f);
   setTimeout(()=>f.remove(),8000);
 }
 
 setInterval(createFlower,300);
 
-yesBtn.onclick=function(){
-  message.innerHTML="🌸🎉 Happy Women’s Day my love! I love you 💖🌹🌷";
-  document.getElementById("buttons").style.display="none";
-  bouquet.style.display="block";
-  gif.style.display="block";
+// Yes button logic
+yesBtn.onclick = function(){
+  // Part 3 or 5 → always show flowers and GIF
+  message.innerHTML = "🌸🎉 Happy Women’s Day my love! I love you 💖🌹🌷";
+  document.getElementById("buttons").style.display = "none";
+  bouquet.style.display = "block";
+  minionGif.style.display = "block";
 }
 
-noBtn.onclick=function(){
+// No button logic
+noBtn.onclick = function(){
   if(step===0){
+    // First No → playful response
     message.innerHTML="😅 Come on, pleaseee! 💖🌸";
     step++;
   } else if(step===1){
+    // Second No → final playful message
     message.innerHTML="😘 Give me a chance! 🌷💐";
     yesBtn.textContent="Yes 🌸";
     noBtn.style.display="none"; // only Yes left
