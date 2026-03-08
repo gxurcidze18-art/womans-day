@@ -67,7 +67,7 @@ button:hover{
   animation:pop 1s ease forwards;
 }
 
-#gifSurprise{
+#photoSurprise{
   width:200px;
   margin-top:20px;
   display:none;
@@ -96,7 +96,7 @@ button:hover{
 </div>
 
 <div id="bouquet">💐🌹🌸💖🌷</div>
-<img id="gifSurprise" src="https://media.tenor.com/S6TnIehIxqAAAAAd/minion-kiss.gif" alt="Cute Minion GIF">
+<img id="photoSurprise" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjmM2Yrwak4Io7Nv_v47hP0QhDZac7eox2vQ&s" alt="Cute Surprise Photo">
 
 <script>
 let step=0;
@@ -105,7 +105,7 @@ const message = document.getElementById("message");
 const buttonsDiv = document.getElementById("buttons");
 const helloBtn = document.getElementById("helloBtn");
 const bouquet = document.getElementById("bouquet");
-const gif = document.getElementById("gifSurprise");
+const photo = document.getElementById("photoSurprise");
 
 function createFlower(){
   let f = document.createElement("div");
@@ -144,12 +144,12 @@ function noSecond(){
   document.getElementById("yesBtnOnly").onclick=showSurprise;
 }
 
-// Show Surprise (flowers + GIF + bouquet + final message)
+// Show Surprise (flowers + bouquet + photo + final message)
 function showSurprise(){
   message.innerHTML="🌸🎉 Happy Women’s Day my love! I love you 💖🌹🌷";
   buttonsDiv.style.display="none";
   bouquet.style.display="block";
-  gif.style.display="block";
+  photo.style.display="block";
 }
 
 // Redefine no button click based on step
